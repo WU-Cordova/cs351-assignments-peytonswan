@@ -18,6 +18,9 @@ class IntervalNode:
 
     def __str__(self) -> str:
         return f'{self._key, self._value}'
+    
+    def __repr__(self) -> str:
+        return str(self)
 class IntervalTree:
     def __init__(self):
         self._tree = AVLTree()
@@ -29,7 +32,7 @@ class IntervalTree:
         node: IntervalNode = self._tree.search(low)
 
         if node: 
-            node._intervals_at_low.append(node)
+            node._intervals_at_low.append((high, value))
 
         else:
             new_node = IntervalNode(key=(low,high), value=value)
@@ -52,6 +55,9 @@ class IntervalTree:
     def search(self, low):
         node = self._tree.search(low)
         if node:
+            node._intervals_at_low.sort(
+                key = lambda x: x[0] #high
+            )
             return node._intervals_at_low
         else: 
             return []

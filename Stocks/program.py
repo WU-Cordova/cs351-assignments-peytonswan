@@ -38,3 +38,5 @@ class StockManager:
 
 
 stockmanager = StockManager()
+results = stockmanager.search(150)
+print(results)
