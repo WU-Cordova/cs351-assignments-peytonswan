@@ -288,7 +288,7 @@ class AVLTree(IAVLTree[K, V], Generic[K, V]):
             level_outputs.append(f'{" " * 4 * level} -> {str(node.value)}')
             draw_tree(node.left, level + 1)
         level_outputs: List[str] = []
-        draw_tree(self._root)
+        draw_tree(self.root)
         return '\n'.join(level_outputs)
     
     def __repr__(self) -> str:
