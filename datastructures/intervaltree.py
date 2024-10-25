@@ -61,3 +61,25 @@ class IntervalTree:
             return node._intervals_at_low
         else: 
             return []
+        
+
+
+    def search_range(self, low: int, high: int):
+
+        low_results = self.search(low)
+        high_results = self.search(high)
+        low_set = set(tuple((stock) for stock in low_results))
+        high_set = set(tuple((stock) for stock in high_results)) #put all stocks into tuples
+        if len(high_set) > 0:
+
+            low_set.add(high_set)
+    
+        result_list = list(low_set)
+        return result_list
+
+    #def _delete(node: Optional[IntervalNode]) -> Optional[IntervalNode]:
+          
+            #if not node: 
+                #return node
+
+            

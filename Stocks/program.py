@@ -14,7 +14,8 @@ class Stock:
     def __str__(self) -> str:
         return f'stock {self.symbol} {self.name} {self.low} {self.high}'
     
-   
+    def __hash__(self) -> int:
+        return hash(self.symbol) + hash(self.low) + hash(self.high)
 class StockManager:
     def __init__(self) -> None:
         self._interval_tree = IntervalTree()
@@ -33,10 +34,10 @@ class StockManager:
     
         print(self._interval_tree)
 
-    def search(self, low):
-        return self._interval_tree.search(low)
+    def search_range(self, low: int, high: int):
+        return self._interval_tree.search_range(low, high)
 
 
 stockmanager = StockManager()
-results = stockmanager.search(150)
+results = stockmanager.search_range(100, 200)
 print(results)
